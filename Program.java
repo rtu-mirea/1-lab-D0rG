@@ -16,4 +16,10 @@ class Student{
         this.isAlive = isAlive;
     }
 
+     Student(String Name, int Age){
+        this.Name = Name;
+        this.age = Age;
+        this.isAlive = true;
+    }
+
 }
