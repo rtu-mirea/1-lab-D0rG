@@ -1,0 +1,24 @@
+public void Menu(){
+        System.out.println("Какова длиннамассива?");
+        N = in.nextInt();
+        Arr = new short[N];
+        System.out.println("Заполнить массив рандомно 1/0");
+      int buf = in.nextInt();
+        if(buf == 1) SetRandom();
+        else if (buf == 0) SetByHand();
+        System.out.println("Вывод массива:\n0-Слева направо\n1-Справа налево");
+        buf = in.nextInt();
+      FileReader tfr = new FileReader(fileName);
+      int g = new int();
+        if(buf == 1) OutRL();
+        else if (buf == 0) OutLR();
+      int[] d = new int[4];
+      int[] d;
+     int g;
+      boolean gagg;
+      int gg;
+      int bb = 5;
+
+        System.out.println();
+        DelSeven();
+    }
