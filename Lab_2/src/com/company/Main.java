@@ -47,5 +47,23 @@ public class Main {
             }
             System.out.println(T2.AddWord(S));
         }
+        else if(Buf == 3){
+            Task_3 T3 = new Task_3();
+
+            System.out.print("Введите число: ");
+            String buf = "";
+            while(buf.compareTo("") == 0){
+                buf = in.nextLine();
+            }
+
+            System.out.println(T3.NumInt(buf));
+
+            System.out.print("Введите числа: ");
+            buf = "";
+            while(buf.compareTo("") == 0){
+                buf = in.nextLine();
+            }
+            System.out.println(T3.NewString(buf));
+        }
     }
 }
