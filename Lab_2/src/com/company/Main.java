@@ -16,5 +16,36 @@ public class Main {
             System.out.println("Кол-во констант: " + T1.CountConst);
             System.out.println("Ввод с клавы тут: \n" + T1.ListKeyAdd);
         }
+        else if(Buf == 2)
+        {
+
+        System.out.println("Введите текст соответствующий заданию");
+        String S = "";
+
+        while(S.compareTo("") == 0){ //не занл как точно сделать чтение, но этот вариант сработал
+        S = in.nextLine();
+        }
+        StringBuffer NewS = new StringBuffer(S);
+        S = "";
+        Task_2 T2 = new Task_2(NewS);
+        System.out.println();
+        //aaaa aaaa aaaa aaaa. aaaa aaaa aaaa aaaa. aaaa aaaa aaaa aaaa. aaaa aaaa aaaa aaaa. aaaa aaaa aaaa aaaa.
+
+            System.out.println("Текст после удаления последнего слова из первого и третьего предложения: ");
+            System.out.println(T2.Del());
+
+            System.out.println("Введите предложение: ");
+            while(S.compareTo("") == 0){
+                S = in.nextLine();
+            }
+            System.out.println(T2.AddText(S));
+            S = "";
+
+            System.out.println("Введите слово: ");
+            while(S.compareTo("") == 0){
+                S = in.nextLine();
+            }
+            System.out.println(T2.AddWord(S));
+        }
     }
 }
