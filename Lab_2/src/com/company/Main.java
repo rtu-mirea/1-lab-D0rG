@@ -56,7 +56,14 @@ public class Main {
                 buf = in.nextLine();
             }
 
-            System.out.println(T3.NumInt(buf));
+            //System.out.println(T3.NumInt(buf));
+
+            if(T3.NumIntOrNo(buf) == 0){
+                System.out.println("Число вещественное");
+            }
+            else if(T3.NumIntOrNo(buf) == 1){
+                System.out.println("Число целое");
+            }else System.out.println("Введено не число");
 
             System.out.print("Введите числа: ");
             buf = "";

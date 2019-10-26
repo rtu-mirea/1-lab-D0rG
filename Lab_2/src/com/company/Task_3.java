@@ -2,23 +2,8 @@ package com.company;
 
 public class Task_3 {
 
-    String pattrenNumInt = "(\\D*)(\\d*)";
-    String pattrenNumDobule = "(\\D*)(\\d*).(\\d*)";
-
-    public Task_3(){
-
-    }
-
-    public String NumInt(String Number){
-
-        if(Number.matches(pattrenNumInt)){
-            return "Число целое";
-        }
-        else if (Number.matches(pattrenNumDobule)){
-            return "Дробное число";
-        }
-        else return "troble";
-    }
+    String pattrenNumInt = "-?\\d+";
+    String pattrenNumDobule = "-?\\d+.\\d+";
 
     public byte NumIntOrNo(String Number){ //Более правильный вариант функции
         if(Number.matches(pattrenNumInt)) return 1;
@@ -26,31 +11,31 @@ public class Task_3 {
         else return -1;
     }
 
-    public String NewString(String Nums){
-        String NewNums = "";
+    public String NewString(String Nums) throws RuntimeException{
         String[] ArrNums = Nums.split(" ");
 
-        for(int i = 0; i < ArrNums.length; ++i){
-            if(NumIntOrNo(ArrNums[i]) == 1){
+        for (String arrNum : ArrNums) {
+            if (NumIntOrNo(arrNum) == 1) {
                 try {
-                    int buff = Integer.parseInt(ArrNums[i]);
-                    NewNums += buff * buff + " ";
+                    int buff = Integer.parseInt(arrNum);
+                    buff *= buff;
+                    Nums = Nums.replace(arrNum, Integer.toString(buff));
+                } catch (Exception e) {
+                    throw new RuntimeException("Ошибка перевода числа");
                 }
-                catch (Exception e){
-                    return "Хьюстон, у нас проблемы";
+            } else if (NumIntOrNo(arrNum) == 0) {
+                try {
+                    double buff = Double.parseDouble(arrNum);
+                    Nums = Nums.replace(arrNum, Integer.toString((int) (buff)));
+                } catch (Exception e) {
+                    throw new RuntimeException("Ошибка перевода числа");
                 }
+            } else if (NumIntOrNo(arrNum) == -1) {
+                throw new RuntimeException("Ошибка ввода");
             }
-            else if(NumIntOrNo(ArrNums[i]) == 0){
-                try{
-                double buff = Double.parseDouble(ArrNums[i]);
-                NewNums += (int)(buff) + " ";
-                }
-                catch (Exception e){
-                    return "У нас проблемы, капитан";
-                }
-            }
-            else if(NumIntOrNo(ArrNums[i]) == -1) return "troble";
+            ;
         }
-        return NewNums;
+        return Nums;
     }
 }
+
