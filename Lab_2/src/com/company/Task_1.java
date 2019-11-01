@@ -2,8 +2,8 @@ package com.company;
 import javafx.scene.control.ButtonBar;
 
 import javax.print.attribute.standard.NumberOfDocuments;
-import java.io.*;
 
+import java.io.*;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -50,40 +50,27 @@ public class Task_1 {
     }
 
     static public void NumObj(String TEXT){
-        //String pattern = "(\\s*)(\\w*)\\s(\\w*)\\s=\\snew\\s(\\w*)\\W{3}"; //патерн для поиска создания обьекта "int ff = new int();"
-        //String patternArr = "(\\s*)(\\w*)\\[]\\s(\\w*)\\s=\\snew\\s(\\w*)\\[(\\d*)];"; //патерн для поиска "int[] ff = new int[4];"
-        String patternDefArr = "(\\s*)(\\w*)(\\s*)(\\w*)\\[]\\s(\\w*)(.*);\r"; //патерн для поиска "int[] ff"
-        String patternDef = "(\\s*)(\\w*)(\\s*)(\\w{1,50})\\s(\\w{1,50});\r"; //патерн для поиска "int ff;"
-        String patternDefPlush = "(\\s*)(\\w*)(\\s*)(\\w{1,50})\\s(\\w*)\\s=\\s(.*);\r"; //патерн для поиска "int ff = ;"
-        String patternKeyAdd = "(\\s*)(\\w*)(\\s*)(\\w*)\\s=\\sin.next(\\w*)\\(\\);\r";
+        //Trim убирает табуляцию. обтект всё где "= new"
         String[] lines = TEXT.split("\\n");
 
         for(int i = 0; i < lines.length; i++){
-            String Buf = "";
+            lines[i] = lines[i].trim();
 
-            if(lines[i].matches(patternDefPlush) || lines[i].matches(patternDefArr) || lines[i].matches(patternDef)){
+            //System.out.println(lines[i]);
+            String[] Buff = lines[i].split(" "); // int X = new int();
+            if(Buff.length >= 4 && Buff[2].compareTo("=") == 0 && Buff[3].compareTo("new") == 0){
                 Obj++;
-                String[] Objs = lines[i].split(" "); //делю строку что бы достать навзвание класса
-                 for(int x = 0; x < Objs.length; x++){
-                     if(Objs[x].compareTo("const") == 0) CountConst++;
-                     if(!(Objs[x].compareTo("") == 0)){ //Вот здесь видно что джава - говно (имхо)
-                         ListObj += Objs[x] + " ";
-                         break;
-                     }
-                 }
+                ListObj += "(" + Buff[0] + ") " + Buff[1] + "; ";
             }
-            if(lines[i].matches(patternKeyAdd)){
-                String[] OBJ = lines[i].split(" ");
-                    for(int x = 0; x < OBJ.length; x++){
-                        if(!(OBJ[x].compareTo("") == 0 || OBJ[x].compareTo(" ") == 0)){
-                           // ListKeyAdd += OBJ[x] + "+";
-                            //System.out.println(OBJ[x]);
-                           // Buf += OBJ[x] + " "; //<комент из 69-ой> (тут у меня сгорела жопа, как и в 69-ой)
-                              Buf += OBJ[x];
-                        }
+            if(Buff[0].compareTo("final") == 0) CountConst++;
+
+            if(Buff.length >= 0){
+                int index = lines[i].lastIndexOf("in.next");
+                if(index != -1){
+                    for(int z = Buff.length - 1; z > 0; --z) {
+                        if(Buff[z].compareTo("=") == 0)  ListKeyAdd += Buff[z - 1] + "; ";
                     }
-                ListKeyAdd += Buf + "\n";
-                KeyAdd++;
+                }
             }
         }
     }

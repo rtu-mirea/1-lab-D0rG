@@ -13,10 +13,10 @@ public void Menu(){
         if(buf == 1) OutRL();
         else if (buf == 0) OutLR();
       int[] d = new int[4];
-      int[] d;
+     	int[] d;
      int g;
       boolean gagg;
-      int gg;
+      final int gg;
       int bb = 5;
 
         System.out.println();
