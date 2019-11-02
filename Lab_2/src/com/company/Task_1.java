@@ -11,14 +11,14 @@ import java.io.IOException;
 
 public class Task_1 {
 
-    static public String TextOut = "";
-    static int Obj = 0;
-    static String ListObj = "";
-    static int CountConst = 0;
-    static int KeyAdd = 0;
-    static String ListKeyAdd = "";
+    public String TextOut = "";
+    int Obj = 0;
+    String ListObj = "";
+    int CountConst = 0;
+    int KeyAdd = 0;
+    String ListKeyAdd = "";
 
-    public static void  ReadTxtFile(String fileName) { // статический метод для чтения файла
+    public void  ReadTxtFile(String fileName) { // статический метод для чтения файла
         // блок try/catch необходим, так как в результате
         // чтения файла могут возникнуть ошибки
         try {
@@ -49,7 +49,7 @@ public class Task_1 {
        ReadTxtFile("Text.txt");
     }
 
-    static public void NumObj(String TEXT){
+    public void NumObj(String TEXT){
         //Trim убирает табуляцию. обтект всё где "= new"
         String[] lines = TEXT.split("\\n");
 
