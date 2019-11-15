@@ -7,7 +7,10 @@ public class Request {
     private int endHour;
 
     public Request(String place, int day, int from, int to){
-
+        this.place = place;
+        dayOfWeek = day;
+        startHour = from;
+        endHour = to;
     }
 
     public String getPlace(){ return place; }
