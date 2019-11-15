@@ -2,7 +2,7 @@ package com.company;
 import java.util.ArrayList;
 
 public class Member extends User {
-    private ArrayList<Request> requests = new ArrayList<>();
+    ArrayList<Request> requests = new ArrayList<>();
 
     public Member(String Name, String Login, String Password) {
         super(Name, Login, Password);
