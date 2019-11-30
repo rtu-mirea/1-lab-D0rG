@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-
+        //region Task2
         String StringBuf = "";
         System.out.print("Введите название файла: ");
         StringBuf = in.nextLine();
@@ -73,6 +73,6 @@ public class Main {
         catch (IOException e){
             System.err.println("Ошибка: " + e);
         }
-
+        //endregion
     }
 }
