@@ -3,8 +3,9 @@ import javax.sound.sampled.AudioFormat;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Scanner;
 
-public class FileManager {
+public class FileManager implements Serializable{
     private String FileName;
     private File file;
 
@@ -141,5 +142,52 @@ public class FileManager {
 
         System.out.println();
         return res;
+    }
+
+    public void WriteCar(Car car) throws Exception{
+        FileOutputStream out = new FileOutputStream(file);
+        ObjectOutputStream outputStream = new ObjectOutputStream(out);
+        outputStream.writeObject(car);
+        outputStream.close();
+    }
+
+    public Car ReadCar() throws Exception{
+        FileInputStream in = new FileInputStream(file);
+        ObjectInputStream inputStream = new ObjectInputStream(in);
+        Car car = (Car)inputStream.readObject();
+        return car;
+    }
+
+    public ArrayList<Car> ReadCarFile() throws Exception{
+        FileInputStream in = new FileInputStream(file);
+        ObjectInputStream inputStream = new ObjectInputStream(in);
+        ArrayList<Car> Cars = (ArrayList)inputStream.readObject();
+        return Cars;
+    }
+
+    public void CarsCol (int n) throws Exception{
+        Scanner in = new Scanner(System.in);
+        ArrayList<Car> ArrCars = new ArrayList<>();
+        for (int i = 0; i < n; i++){
+            System.out.println("Вы вводите автомобиль №" + (i + 1));
+            System.out.print("Введите модель автомобиля: ");
+            String StringBuf1 = in.nextLine();
+            System.out.print("Введите номер автомобиля: ");
+            String StringBuf2 = in.nextLine();
+            System.out.print("Введите цвет автомобиля: ");
+            String StringBuf3 = in.nextLine();
+            System.out.print("Введите Имя владельца: ");
+            String StringBuf4 = in.nextLine();
+            System.out.print("Введите Фамилию владельца: ");
+            String StringBuf5 = in.nextLine();
+            System.out.print("Введите аддрес: ");
+            String StringBuf6 = in.nextLine();
+            System.out.print("Введите дату пследнего тех.осмотра (xx.xx.xxxx): ");
+            String StringBuf7 = in.nextLine();
+            ArrCars.add(new Car(StringBuf1,StringBuf2,StringBuf3,StringBuf4,StringBuf5,StringBuf6,StringBuf7));
+        }
+        FileOutputStream out = new FileOutputStream(file);
+        ObjectOutputStream outputStream = new ObjectOutputStream(out);
+        outputStream.writeObject(ArrCars);
     }
 }

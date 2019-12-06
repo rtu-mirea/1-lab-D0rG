@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner in = new Scanner(System.in);
         //region Task2
         String StringBuf = "";
@@ -201,7 +201,17 @@ public class Main {
         //endregion
 
         //region Task4
+        Car car = new Car("Tesla cybertrack", "е404рр777", "Iron", "Eilon", "Musk", "Kalifornia", "23.04.2018");
+        ClassTextFile File = new ClassTextFile("CarDB.txt");
+        File.fill(car);
 
+        FileManager fm = new FileManager("NewCarBD");
+        fm.WriteCar(car);
+        car = fm.ReadCar();
+        ArrayList<Car> Cars = fm.ReadCarFile();
+        System.out.print("Введите кол-во тачек: ");
+        int buf = in.nextInt();
+        fm.CarsCol(buf);
         //endregion
     }
 }
