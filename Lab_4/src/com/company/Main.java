@@ -1,7 +1,6 @@
 package com.company;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -173,7 +172,36 @@ public class Main {
         //endregion
 
         //region Task3
-        
+        try {
+            int bufInt;
+            DataInputStream InData = new DataInputStream(new FileInputStream("A.txt"));
+            DataOutputStream OutData = new DataOutputStream(new FileOutputStream("B.txt"));
+            while ((bufInt = InData.read()) != -1) { //Пока что-то есть
+                OutData.write(bufInt);
+            }
+            InData.close(); OutData.close();
+
+
+            BufferedReader In = new BufferedReader(new InputStreamReader(new FileInputStream("A.txt"), "cp1251"));
+            System.out.println(Charset.defaultCharset().name());
+            String bufStr = "";
+            while ((bufStr = In.readLine()) != null) {
+                System.out.println(bufStr);
+            }
+
+
+            In = new BufferedReader(new InputStreamReader(new FileInputStream("B.txt"), "cp1251"));
+            while ((bufStr = In.readLine()) != null) {
+                System.out.println(bufStr);
+            }
+        }
+        catch (Exception e){
+            System.err.println(e);
+        }
+        //endregion
+
+        //region Task4
+
         //endregion
     }
 }
