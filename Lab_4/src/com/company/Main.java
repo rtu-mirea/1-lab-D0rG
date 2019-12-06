@@ -1,5 +1,8 @@
 package com.company;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -73,6 +76,104 @@ public class Main {
         catch (IOException e){
             System.err.println("Ошибка: " + e);
         }
+        //endregion
+
+        //region Task1
+        String Task1_1 = "MyFile1.txt";
+        String Task1_2 = "MyFile2.txt";
+        String Task1_3 = "MyFile3.txt";
+        String Disc = "D:\\";
+        String FolderOld = "OldFolder";
+        String FolderNew = "NewFolder";
+
+        try {
+            File file1 = new File(Task1_1);
+            file1.createNewFile();
+            if (file1.exists()) {
+                System.out.println("Файл с именем " + Task1_1 + " cуществует");
+            }
+
+
+            File file2 = new File(Disc + Task1_2);
+            file2.createNewFile();
+            if (file2.exists()) {
+                System.out.println("Файл с именем " + Task1_2 + " cуществует");
+            }
+
+
+            File file3 = new File(Disc + FolderOld + Task1_3);
+            file3.createNewFile();
+            if (file3.exists()) {
+                System.out.println("Файл с именем " + Task1_3 + " cуществует");
+            }
+
+            File folder1 = new File(FolderNew);
+            folder1.mkdir();
+            if (folder1.exists()) {
+                System.out.println(FolderNew + " теперь существует");
+            }
+//----------------------------------------------------------------------------------------
+            if (file1.isFile()) {
+                System.out.println(Task1_1 + " являеться файлом");
+            }
+
+            if (folder1.isDirectory()) {
+                System.out.println(FolderOld + " являеться папкой");
+            }
+
+//            if (f1.exists()) {
+//                System.out.println("Файл с именем " + Task1_1 + " cуществует");
+//            }
+
+            if (Files.exists(file1.toPath())) {
+                System.out.println(Task1_1 + " находиться в дириктории");
+            }
+
+            System.out.println(file1.getPath());
+
+            System.out.println("Size of the first file: " + file1.length() + " byte(s);");
+            if(file1.isFile()){
+                System.out.println("Это файл");
+            }
+            else {
+                System.out.println("Это папка");
+            }
+//-----------------------------------------------------------------------------------------------
+            File folder = new File(FolderNew);
+            folder.mkdir();
+            if (folder.exists()) {
+                System.out.println("Папка с именем " + FolderNew + " существует");
+            }
+            String currPath = System.getProperty("user.dir");
+            File currentDir = new File(currPath);
+
+            for (String Namefile : currentDir.list()) {
+                System.out.println(Namefile);
+            }
+
+            for (File file : currentDir.listFiles()) {
+                System.out.println(file.getPath());
+            }
+
+            file1.delete();
+            file2.delete();
+            file3.delete();
+            folder1.delete();
+            folder.delete();
+        }
+        catch (FileNotFoundException e){
+            System.err.println(e);
+        }
+        catch (IOException e){
+            System.err.println(e);
+        }
+        catch (Exception e){
+            System.err.println(e);
+        }
+        //endregion
+
+        //region Task3
+        
         //endregion
     }
 }
